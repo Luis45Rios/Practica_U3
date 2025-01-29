@@ -32,7 +32,7 @@ public class frm_CrearVenta extends javax.swing.JFrame {
         initComponents();
         cargarAnio(year_box); // Llamada correcta a `cargarAnio`
     }
-    String[] mes = new String[12];
+    String[] mes = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
 
     public void repetirMes(String str) {
         boolean band = false;
