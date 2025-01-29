@@ -1,5 +1,7 @@
 package Ventas;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -16,18 +18,20 @@ public class frm_CrearVenta extends javax.swing.JFrame {
 
     /**
      * Creates new form frm_CrearVenta
+     *
+     * @param year_box
      */
-    public static void cargaAnio(JComboBox cbx){
-         cbx.removeAllItems();
-         for(int i = 2000; i <= 2030; i++){
-             cbx.addItem(i);
-         }
-    }
-    public frm_CrearVenta() {
-        initComponents();
-        cargarAnio(year_box );
+    private void cargarAnio(JComboBox<String> year_box) {
+        year_box.removeAllItems();
+        for (int i = 2000; i <= 2030; i++) {
+            year_box.addItem(String.valueOf(i));
+        }
     }
 
+    public frm_CrearVenta() {
+        initComponents();
+        cargarAnio(year_box); // Llamada correcta a `cargarAnio`
+    }
     String[] mes = new String[12];
 
     public void repetirMes(String str) {
@@ -40,7 +44,6 @@ public class frm_CrearVenta extends javax.swing.JFrame {
                 break;
             }
         }
-
 
         if (band) {
             JOptionPane.showMessageDialog(null, "El mes ya esta registrado", "INFORMATION...", JOptionPane.INFORMATION_MESSAGE);
@@ -269,7 +272,4 @@ public class frm_CrearVenta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> year_box;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarAnio(JComboBox<String> year_box) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
