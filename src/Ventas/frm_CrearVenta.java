@@ -4,6 +4,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -82,7 +83,7 @@ public class frm_CrearVenta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_TablaInforme = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -196,7 +197,7 @@ public class frm_CrearVenta extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 150, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_TablaInforme.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -204,7 +205,7 @@ public class frm_CrearVenta extends javax.swing.JFrame {
                 "Mes", "Ventas", "Gastos"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_TablaInforme);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 390, 200));
 
@@ -214,7 +215,20 @@ public class frm_CrearVenta extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String inputMonth = txt_Mes.getText();
-        repetirMes(inputMonth);
+        
+        if (txt_Ventas.getText().trim().isEmpty() || txt_Gastos.getText().trim().isEmpty() || txt_Mes.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            repetirMes(inputMonth);
+            DefaultTableModel modelTable = (DefaultTableModel) tbl_TablaInforme.getModel();
+            
+            modelTable.addRow(new Object[]{txt_Mes.getText().trim(), txt_Ventas.getText().trim(), txt_Gastos.getText().trim()});
+            JOptionPane.showMessageDialog(null, "Datos añadidos", "OK", JOptionPane.INFORMATION_MESSAGE);
+            
+            txt_Mes.setText("");
+            txt_Ventas.setText("");
+            txt_Gastos.setText("");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -265,7 +279,7 @@ public class frm_CrearVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_TablaInforme;
     private javax.swing.JTextField txt_Gastos;
     private javax.swing.JTextField txt_Mes;
     private javax.swing.JTextField txt_Ventas;
