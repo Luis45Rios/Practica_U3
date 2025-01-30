@@ -350,6 +350,9 @@ public class frm_casas extends javax.swing.JFrame {
 
     private void change_btnActionPerformed(java.awt.event.ActionEvent evt) {
         editar();
+        if(tbl_casas == null) {
+            setEnabled(false);
+        }
     }
 
     private void save_btnActionPerformed(java.awt.event.ActionEvent evt) {
